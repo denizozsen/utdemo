@@ -1,0 +1,4 @@
+utdemo - Unit Testing Demo
+
+This project explores unit testing in PHP. All
+examples use PHPUnit as the unit testing framework.
