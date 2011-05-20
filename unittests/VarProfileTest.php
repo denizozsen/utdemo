@@ -1,6 +1,6 @@
 <?php
 
-require_once 'var_profile.php';
+require_once '../classes/var_profile.php';
 
 require_once 'PHPUnit/Framework/TestCase.php';
 
@@ -17,6 +17,13 @@ class VarProfileTest extends PHPUnit_Framework_TestCase
         parent::setUp();
     }
     
+	/**
+	 * Cleans up the environment after running a test.
+	 */
+	protected function tearDown()
+	{
+		parent::tearDown ();
+	}
     
     ///////////   bool   /////////////
     
