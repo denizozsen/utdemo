@@ -1,6 +1,6 @@
 <?php
 
-require_once '../classes/var_profile.php';
+require_once 'classes/var_profile.php';
 
 require_once 'PHPUnit/Framework/TestCase.php';
 
