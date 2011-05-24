@@ -183,3 +183,4 @@ class ShippingAddressUtilTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($originalDim1, $decodedDim1);
     }
 }
+
