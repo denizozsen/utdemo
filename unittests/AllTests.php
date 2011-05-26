@@ -4,7 +4,7 @@ $thisScriptsPath = __FILE__;
 set_include_path(get_include_path() . ':' . substr($thisScriptsPath, 0, strpos($thisScriptsPath, 'AllTests.php')));
 require_once 'PHPUnit/Framework/TestSuite.php';
 
-require_once 'util/VarProfileTest.php';
+require_once 'unittests/util/VarProfileTest.php';
 
 /**
  * Static test suite.
