@@ -4,7 +4,7 @@ require_once 'classes/shop/ProductEntry.php';
 
 /**
  * The shopping cart object holds the products that the user has chosen to
- * included in a potential order.
+ * include in a potential order.
  * 
  * @author deniz
  */
