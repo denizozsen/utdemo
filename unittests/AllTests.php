@@ -6,6 +6,7 @@ require_once 'PHPUnit/Framework/TestSuite.php';
 
 require_once 'unittests/classes/util/VarProfileTest.php';
 require_once 'unittests/classes/shop/ProductTest.php';
+require_once 'unittests/classes/shop/ProductEntryTest.php';
 require_once 'unittests/classes/shop/ShoppingCartTest.php';
 
 /**
@@ -21,9 +22,10 @@ class AllTests extends PHPUnit_Framework_TestSuite {
 		
 		// Tests for util package
 		$this->addTestSuite ('VarProfileTest');
-	
+		
 		// Tests for shop package
 		$this->addTestSuite ('ProductTest');
+		$this->addTestSuite ('ProductEntryTest');
 		$this->addTestSuite ('ShoppingCartTest');
 	}
 	
