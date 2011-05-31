@@ -29,5 +29,53 @@ class ProductTest extends PHPUnit_Framework_TestCase
 	{
 		new Product('1', 'Test Product', 'Test Category');
 	}
+	
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testConstructor_exceptionIfNullId()
+	{
+		new Product(null, 'Test Product', 'Test Category');
+	}
+	
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testConstructor_exceptionIfNonNumericId()
+	{
+		new Product('aasds', 'Test Product', 'Test Category');
+	}
+	
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testConstructor_exceptionIfNullName()
+	{
+		new Product('1', null, 'Test Category');
+	}
+	
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testConstructor_exceptionIfEmptyName()
+	{
+		new Product('1', '', 'Test Category');
+	}
+	
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testConstructor_exceptionIfNullCategory()
+	{
+		new Product('1', 'Test Product', null);
+	}
+	
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testConstructor_exceptionIfEmptyCategory()
+	{
+		new Product('1', 'Test Product', '');
+	}
 }
 
