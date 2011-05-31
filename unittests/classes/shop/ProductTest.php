@@ -77,5 +77,26 @@ class ProductTest extends PHPUnit_Framework_TestCase
 	{
 		new Product('1', 'Test Product', '');
 	}
+	
+	public function testGetId()
+	{
+		$id = 3212;
+		$product = new Product($id, 'Test Product', 'Test Category');
+		$this->assertEquals($id, $product->getId());
+	}
+	
+	public function testGetName()
+	{
+		$name = 'My Test Name!!';
+		$product = new Product('1', $name, 'Test Category');
+		$this->assertEquals($name, $product->getName());
+	}
+	
+	public function testGetCategory()
+	{
+		$category = 'A Test Category';
+		$product = new Product('1', 'Test Product', $category);
+		$this->assertEquals($category, $product->getCategory());
+	}
 }
 
