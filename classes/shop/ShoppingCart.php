@@ -25,9 +25,20 @@ class ShoppingCart
 	 * 
 	 * @param Product $product
 	 * @param integer $quantity
+	 *
+	 * @throws InvalidArgumentException if $product is not of type Product
+	 *                                  or quantity is is not an integer
 	 */
 	public function addProductEntry($product, $quantity)
 	{
+		if ( is_null($product) || !($product instanceof Product) ) {
+			throw new InvalidArgumentException('product argument must be of type Product');
+		}
+		
+		if ( is_null($quantity) || !is_int($quantity) || !($quantity > 0) ) {
+			throw new InvalidArgumentException('quantity argument must be a positive integer');
+		}
+		
 		// If an entry with the same product already exists, add the quantity
 		// to the existing entry
 		foreach($this->productEntries as $entry) {
@@ -48,15 +59,27 @@ class ShoppingCart
 	 * 
 	 * @param integer $productId
 	 * @param integer $quantityDiff
+	 * 
+	 * @throws InvalidArgumentException if either argument is not an integer
+	 * @throws OutOfRangeException if an entry with the given product id is not found
 	 */
 	public function adjustProductQuantity($productId, $quantityDiff)
 	{
+		if ( is_null($productId) || !is_int($productId) ) {
+			throw new InvalidArgumentException('productId argument must be an integer');
+		}
+		if ( is_null($quantityDiff) || !is_int($quantityDiff) ) {
+			throw new InvalidArgumentException('quantityDiff argument must be an integer');
+		}
+		
 		foreach($this->productEntries as $entry) {
 			$productFromEntry = $entry->getProduct();
 			if ($productFromEntry->getId() == $productId) {
 				$entry->setQuantity($entry->getQuantity() + $quantityDiff);
-				break;
+				return;
 			}
 		}
+		
+		throw new OutOfRangeException("No entry found with product id {$productId}");
 	}
 }
