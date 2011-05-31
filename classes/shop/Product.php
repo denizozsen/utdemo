@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * A Product object describes all the attributes of a product in a shop.
+ * 
+ * @author deniz
+ */
 class Product
 {
 	private $id;
@@ -23,16 +28,25 @@ class Product
 		$this->category = $category;
 	}
 	
+	/**
+	 * Returns the ID for the product.
+	 */
 	public function getId()
 	{
 		return $this->id;
 	}
 	
+	/**
+	 * Returns the name of the product.
+	 */
 	public function getName()
 	{
 		return $this->name;
 	}
 	
+	/**
+	 * Returns the category to which the product belongs.
+	 */
 	public function getCategory()
 	{
 		return $this->category;
