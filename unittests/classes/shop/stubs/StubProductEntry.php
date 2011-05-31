@@ -1,13 +1,13 @@
 <?php
 
-class MockProductEntry
+class StubProductEntry
 {
 	private $product;
 	private $quantity;
 	
-	public function __construct($product, $quantity)
+	public function __construct($product = null, $quantity = 1)
 	{
-		$this->product  = $product;
+		$this->product  = ($product == null) ? new MockProduct() : $product;
 		$this->quantity = $quantity;
 	}
 	
