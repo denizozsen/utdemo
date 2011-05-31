@@ -120,7 +120,7 @@ class VarProfile
     
     /**
      * Returns the total number of elements that is profiled - this is always
-     * equal to 1 for scalar variables, and greated than 1 for (non-empty)
+     * equal to 1 for scalar variables, and greater than 1 for (non-empty)
      * arrays.
      */
     public function getTotalNumElements()
