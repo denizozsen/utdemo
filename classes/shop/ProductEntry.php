@@ -1,5 +1,7 @@
 <?php
 
+require_once 'classes/shop/Product.php';
+
 /**
  * A product entry describes a product in the shopping basket and the quantity
  * that the customer would like to order.
@@ -13,6 +15,13 @@ class ProductEntry
 	
 	public function __construct($product, $quantity)
 	{
+		if ( is_null($product) || !($product instanceof Product) ) {
+			throw new InvalidArgumentException('product argument must be non-null and of type Product');
+		}
+		if ( is_null($quantity) || !is_int($quantity) ) {
+			throw new InvalidArgumentException('quantity argument must be an integer');
+		}
+				
 		$this->product  = $product;
 		$this->quantity = $quantity;
 	}
@@ -40,6 +49,10 @@ class ProductEntry
 	 */
 	public function setQuantity($quantity)
 	{
+		if ( is_null($quantity) || !is_int($quantity) ) {
+			throw new InvalidArgumentException('quantity argument must be an integer');
+		}
+		
 		$this->quantity = $quantity;
 	}
 }
