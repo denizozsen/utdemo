@@ -15,12 +15,12 @@ class StubProduct extends Product
 	
 	public function getName()
 	{
-		return '[Mock Product]';
+		return '[Stub Product]';
 	}
 	
 	public function getCategory()
 	{
-		return '[Mock Category]';
+		return '[Stub Product Category]';
 	}
 }
 
