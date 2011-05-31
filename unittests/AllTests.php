@@ -12,8 +12,8 @@ require_once 'unittests/classes/shop/ShoppingCartTest.php';
 /**
  * Static test suite.
  */
-class AllTests extends PHPUnit_Framework_TestSuite {
-	
+class AllTests extends PHPUnit_Framework_TestSuite
+{
 	/**
 	 * Constructs the test suite handler.
 	 */
