@@ -33,21 +33,67 @@ class ProductEntryTest extends PHPUnit_Framework_TestCase
 		new ProductEntry(new StubProduct(), 1);
 	}
 	
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testConstructor_exceptionIfNullProduct()
+	{
+		new ProductEntry(null, 1);
+	}
+	
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testConstructor_exceptionIfNullQuantity()
+	{
+		new ProductEntry(new StubProduct(), null);
+	}
+	
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testConstructor_exceptionIfNonNumericQuantity()
+	{
+		new ProductEntry(new StubProduct(), 'dasasds');
+	}
+	
 	public function testGetProduct()
 	{
-		// TODO Auto-generated ProductEntryTest->testGetProduct()
-		$this->markTestIncomplete ( "getProduct test not implemented" );
+		$product = new StubProduct();
+		$pe = new ProductEntry($product, 1);
+		$this->assertSame($product, $pe->getProduct());
 	}
 	
 	public function testGetQuantity()
 	{
-		// TODO Auto-generated ProductEntryTest->testGetQuantity()
-		$this->markTestIncomplete ( "getQuantity test not implemented" );
+		$quantity = 23;
+		$pe = new ProductEntry(new StubProduct(), $quantity);
+		$this->assertSame($quantity, $pe->getQuantity());
 	}
 	
 	public function testSetQuantity()
 	{
-		// TODO Auto-generated ProductEntryTest->testSetQuantity()
-		$this->markTestIncomplete ( "setQuantity test not implemented" );
+		$quantity = 11;
+		$pe = new ProductEntry(new StubProduct(), 4);
+		$pe->setQuantity($quantity);
+		$this->assertSame($quantity, $pe->getQuantity());
+	}
+	
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testSetQuantity_exceptionIfNullArg()
+	{
+		$pe = new ProductEntry(new StubProduct(), 4);
+		$pe->setQuantity(null);
+	}
+	
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testSetQuantity_exceptionIfNonNumericArg()
+	{
+		$pe = new ProductEntry(new StubProduct(), 'sdfd');
+		$pe->setQuantity(null);
 	}
 }
