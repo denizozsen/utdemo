@@ -21,10 +21,17 @@
 			<h2>Products</h2>
 			
 			<?php if (isset($_SESSION['add_to_cart_message'])) : ?>
-				<div style="font-size: smaller; margin-bottom: 10px; background-color: yellow;">
+				<div style="font-size: smaller; margin-bottom: 10px;
+					<?php if (isset($_SESSION['add_to_cart_error'])) : ?>
+						background-color: red;
+					<?php else : ?>
+						background-color: yellow;
+					<?php endif; ?>
+					">
 					<?php
 					    echo $_SESSION['add_to_cart_message'];
 					    unset($_SESSION['add_to_cart_message']);
+					    unset($_SESSION['add_to_cart_error']);
 					?>
 				</div>
 			<?php endif; ?>
@@ -67,10 +74,17 @@
 			<h2>Shopping Cart</h2>
 			
 			<?php if (isset($_SESSION['cart_update_message'])) : ?>
-				<div style="font-size: smaller; margin-bottom: 10px; background-color: yellow;">
+				<div style="font-size: smaller; margin-bottom: 10px;
+    					<?php if (isset($_SESSION['cart_update_error'])) : ?>
+    						background-color: red;
+    					<?php else : ?>
+    						background-color: yellow;
+    					<?php endif; ?>
+					">
 					<?php
 					    echo $_SESSION['cart_update_message'];
 					    unset($_SESSION['cart_update_message']);
+					    unset($_SESSION['cart_update_error']);
 					?>
 				</div>
 			<?php endif; ?>

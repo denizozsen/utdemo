@@ -41,9 +41,22 @@ if ( 'POST' == strtoupper($_SERVER['REQUEST_METHOD']) ) {
     // Handle add-to-cart action
     foreach($_POST as $paramKey => $paramVal) {
         if (strpos($paramKey, 'add') !== false) {
-            $productId = intval(substr($paramKey, strlen('add')));
-            $quantity = intval($_POST['q' . $productId]);
-            $cart->addProductEntry(retrieveProduct($productId), $quantity);
+            
+            $rawProductId = trim(substr($paramKey, strlen('add')));
+            if ( (string)(int)$rawProductId !== $rawProductId ) {
+                $_SESSION['add_to_cart_error']   = true;
+                $_SESSION['add_to_cart_message'] = "Product ID is of incorrect format: {$rawProductId}";
+                break;
+            }
+            
+            $rawQuantity = trim($_POST['q' . $rawProductId]);
+            if ( (string)(int)$rawQuantity !== $rawQuantity ) {
+                $_SESSION['add_to_cart_error']   = true;
+                $_SESSION['add_to_cart_message'] = "Quantity must be an integer, but was: {$rawQuantity}";
+                break;
+            }
+            
+            $cart->addProductEntry(retrieveProduct(intval($rawProductId)), intval($rawQuantity));
             $_SESSION['add_to_cart_message'] = 'Product added to cart';
             break;
         }
@@ -52,14 +65,24 @@ if ( 'POST' == strtoupper($_SERVER['REQUEST_METHOD']) ) {
     // Handle update-cart action
     if (isset($_POST['update_cart'])) {
         foreach($cart->getProductEntries() as $e) {
+
             $currentQ = $e->getQuantity();
-            $newQ = $_POST['cart_quantity' . $e->getProduct()->getId()];
-            if ($currentQ != $newQ) {
-                $cart->adjustProductQuantity($e->getProduct()->getId(), ($newQ-$currentQ));
+            
+            $rawNewQ = trim($_POST['cart_quantity' . $e->getProduct()->getId()]);
+            if ( (string)(int)$rawNewQ !== $rawNewQ ) {
+                $_SESSION['cart_update_error']   = true;
+                $_SESSION['cart_update_message'] = "Quantity must be an integer, but was {$rawNewQ}";
+                break;
+            }
+            
+            if ($currentQ != intval($rawNewQ)) {
+                $cart->adjustProductQuantity($e->getProduct()->getId(), (intval($rawNewQ)-$currentQ));
             }
         }
         
-        $_SESSION['cart_update_message'] = 'Cart updated successfully!';
+        if (!isset($_SESSION['cart_update_error'])) {
+            $_SESSION['cart_update_message'] = 'Cart updated successfully!';
+        }
     }
     
     // Redirect
