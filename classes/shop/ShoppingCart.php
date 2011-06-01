@@ -13,7 +13,7 @@ class ShoppingCart
 	private $productEntries = array();
 	
 	/**
-	 * Retrieve the product entries held by the shopping cart.
+	 * Retrieves the product entries held by the shopping cart.
 	 */
 	public function getProductEntries()
 	{
@@ -21,7 +21,7 @@ class ShoppingCart
 	}
 	
 	/**
-	 * Add a product entry to the shopping cart.
+	 * Adds a product entry to the shopping cart.
 	 * 
 	 * @param Product $product
 	 * @param integer $quantity
@@ -54,8 +54,11 @@ class ShoppingCart
 	}
 	
 	/**
-	 * Modify the quantity of a product for which an entry exists in the
+	 * Modifies the quantity of a product for which an entry exists in the
 	 * shopping basket.
+	 * 
+	 * Removes a product entry, if its quantity becomes zero, as a result of
+	 * the adjustment.
 	 * 
 	 * @param integer $productId
 	 * @param integer $quantityDiff
