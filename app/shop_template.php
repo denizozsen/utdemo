@@ -7,8 +7,9 @@
 </head>
 
 <body>
-		
+	
 	<form action="/index.php" method="post">
+		
 		
 		<div>
 			<h1>Shop Demo Application</h1>
@@ -82,8 +83,8 @@
     					<div>
     						Quantity:
     						<input type="text"
-    							id="cq<?php echo $e->getProduct()->getId(); ?>"
-    							name="cq<?php echo $e->getProduct()->getId(); ?>"
+    							id="cart_quantity<?php echo $e->getProduct()->getId(); ?>"
+    							name="cart_quantity<?php echo $e->getProduct()->getId(); ?>"
     							value="<?php echo $e->getQuantity() ?>"
     							style="width: 25px">
     						</input>
@@ -101,7 +102,7 @@
 		
 		
 	</form>
-		
+	
 </body>
 
 </html>

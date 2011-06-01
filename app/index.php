@@ -37,7 +37,7 @@ if (isset($_SESSION['cart'])) {
 }
 
 // Handle actions
-if ('POST' == strtoupper($_SERVER['REQUEST_METHOD'])) {
+if ( 'POST' == strtoupper($_SERVER['REQUEST_METHOD']) ) {
     // Handle add-to-cart action
     foreach($_POST as $paramKey => $paramVal) {
         if (strpos($paramKey, 'add') !== false) {
@@ -53,7 +53,7 @@ if ('POST' == strtoupper($_SERVER['REQUEST_METHOD'])) {
     if (isset($_POST['update_cart'])) {
         foreach($cart->getProductEntries() as $e) {
             $currentQ = $e->getQuantity();
-            $newQ = $_POST['cq' . $e->getProduct()->getId()];
+            $newQ = $_POST['cart_quantity' . $e->getProduct()->getId()];
             if ($currentQ != $newQ) {
                 $cart->adjustProductQuantity($e->getProduct()->getId(), ($newQ-$currentQ));
             }
