@@ -72,11 +72,19 @@ class ShoppingCart
 			throw new InvalidArgumentException('quantityDiff argument must be an integer');
 		}
 		
-		foreach($this->productEntries as $entry) {
+		foreach($this->productEntries as $i => $entry) {
 			$productFromEntry = $entry->getProduct();
 			if ($productFromEntry->getId() == $productId) {
+			    
+			    // If quantity becomes 0, remove the entry altogether
+			    if (0 == $entry->getQuantity() + $quantityDiff) {
+			        array_splice($this->productEntries, $i, 1);
+			        return;
+			    }
+			    
 				$entry->setQuantity($entry->getQuantity() + $quantityDiff);
 				return;
+				
 			}
 		}
 		
