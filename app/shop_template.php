@@ -49,7 +49,7 @@
 						<td style="padding-right: 50px;"><strong><?php echo $p->getName() ?></strong></td>
 						<td style="padding-right: 50px;"><?php echo $p->getCategory() ?></td>
 						<td>
-							<span style="font-size: smaller;">amount:</span>
+							<span style="font-size: smaller;">quantity:</span>
 							<input type="text"
 								id="q<?php echo $p->getId() ?>"
 								name="q<?php echo $p->getId() ?>"
