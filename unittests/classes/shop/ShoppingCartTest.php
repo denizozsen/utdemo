@@ -145,7 +145,7 @@ class ShoppingCartTest extends PHPUnit_Framework_TestCase
 		$cart->addProductEntry(new StubProduct($id), 32);
 		$cart->addProductEntry(new StubProduct($id), 32);
 		
-		$this->assertEquals(2, count($cart->getProductEntries()));
+		$this->assertEquals(1, count($cart->getProductEntries()));
 	}
 	
 	public function testGetProductEntries_correctNumberOfEntriesAfterAddingWithSameId_forSeveralIds()
