@@ -8,7 +8,7 @@
 
 <body>
 	
-	<form action="/index.php" method="post">
+	<form action="/" method="post">
 		
 		
 		<div>
@@ -16,12 +16,12 @@
 		</div>
 		
 		
-		<div id="list" style="margin: 40px 0 40px 0;">
+		<div id="list" style="margin: 15px 0 15px 0;">
 			
 			<h2>Catalog</h2>
 			
 			<?php if (isset($_SESSION['add_to_cart_message'])) : ?>
-				<div style="font-size: smaller; margin-bottom: 10px;
+				<div style="font-size: smaller; margin-bottom: 5px;
 					<?php if (isset($_SESSION['add_to_cart_error'])) : ?>
 						background-color: red;
 					<?php else : ?>
@@ -69,12 +69,12 @@
 		<hr />
 		
 		
-		<div id="cart" style="margin-top: 40px;">
+		<div id="cart" style="margin-top: 15px;">
 			
 			<h2>Shopping Cart</h2>
 			
 			<?php if (isset($_SESSION['cart_update_message'])) : ?>
-				<div style="font-size: smaller; margin-bottom: 10px;
+				<div style="font-size: smaller; margin-bottom: 5px;
     					<?php if (isset($_SESSION['cart_update_error'])) : ?>
     						background-color: red;
     					<?php else : ?>
@@ -91,7 +91,7 @@
 			
 			<?php if (count($cart->getProductEntries()) > 0) : ?>
     			<?php foreach($cart->getProductEntries() as $e) : ?>
-    				<div style="margin-bottom: 20px">
+    				<div style="margin-bottom: 15px">
     					<div><strong><?php echo $e->getProduct()->getName() ?></strong>
     							(category: <?php echo $e->getProduct()->getCategory() ?>)</div>
     					<div>
