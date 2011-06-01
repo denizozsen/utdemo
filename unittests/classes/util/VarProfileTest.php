@@ -9,22 +9,6 @@ require_once 'PHPUnit/Framework/TestCase.php';
  */
 class VarProfileTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * Prepares the environment before running a test.
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-    }
-    
-	/**
-	 * Cleans up the environment after running a test.
-	 */
-	protected function tearDown()
-	{
-		parent::tearDown ();
-	}
-    
     ///////////   bool   /////////////
     
     public function testBool_numElements()
