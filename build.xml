@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="utdemo" basedir="." default="all">
+
+    <target name="all" depends="clean, php-documentor, phpunit" />
+	
+	<target name="bootstrap">
+		
+	</target>
+	
+	<target name="clean">
+		<delete dir="build" quiet="true" />
+		<mkdir dir="build" />
+		<mkdir dir="build/logs" />
+		<mkdir dir="build/coverage" />
+    </target>
+	
+	<target name="php-documentor">
+		<exec executable="/Shared/tools/PhpDocumentor-1.4.3/phpdoc" dir="${basedir}">
+		<arg line="-ct type -ue on -t ${basedir}/build/api
+                 -tb /Shared/sites/phpundercontrol/data/phpdoc -o HTML:Phpuc:phpuc
+                 -d ."/>
+        </exec>
+    </target>
+	
+	<target name="phpunit">
+    	<exec executable="phpunit" dir="${basedir}" failonerror="on">
+			<arg line="--log-junit ${basedir}/build/logs/junit.xml
+                 --coverage-clover ${basedir}/build/logs/phpunit.coverage.xml
+                 --coverage-html ${basedir}/build/coverage
+                 phpucAllTests unittests/AllTests.php" />
+        </exec>
+    </target>
+  
+</project>
