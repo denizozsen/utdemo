@@ -11,7 +11,7 @@ class ProductTest extends PHPUnit_Framework_TestCase
 {
 	public function testConstructor_noException()
 	{
-		new Product('1', 'Test Product', 'Test Category');
+		new Product(1, 'Test Product', 'Test Category');
 	}
 	
 	/**
@@ -25,7 +25,7 @@ class ProductTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @expectedException InvalidArgumentException
 	 */
-	public function testConstructor_exceptionIfNonNumericId()
+	public function testConstructor_exceptionIfNonIntegerId()
 	{
 		new Product('aasds', 'Test Product', 'Test Category');
 	}
@@ -35,7 +35,7 @@ class ProductTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testConstructor_exceptionIfNullName()
 	{
-		new Product('1', null, 'Test Category');
+		new Product(1, null, 'Test Category');
 	}
 	
 	/**
@@ -43,7 +43,7 @@ class ProductTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testConstructor_exceptionIfEmptyName()
 	{
-		new Product('1', '', 'Test Category');
+		new Product(1, '', 'Test Category');
 	}
 	
 	/**
@@ -51,7 +51,7 @@ class ProductTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testConstructor_exceptionIfNullCategory()
 	{
-		new Product('1', 'Test Product', null);
+		new Product(1, 'Test Product', null);
 	}
 	
 	/**
@@ -59,7 +59,7 @@ class ProductTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testConstructor_exceptionIfEmptyCategory()
 	{
-		new Product('1', 'Test Product', '');
+		new Product(1, 'Test Product', '');
 	}
 	
 	public function testGetId()
@@ -72,14 +72,14 @@ class ProductTest extends PHPUnit_Framework_TestCase
 	public function testGetName()
 	{
 		$name = 'My Test Name!!';
-		$product = new Product('1', $name, 'Test Category');
+		$product = new Product(1, $name, 'Test Category');
 		$this->assertEquals($name, $product->getName());
 	}
 	
 	public function testGetCategory()
 	{
 		$category = 'A Test Category';
-		$product = new Product('1', 'Test Product', $category);
+		$product = new Product(1, 'Test Product', $category);
 		$this->assertEquals($category, $product->getCategory());
 	}
 }

@@ -13,8 +13,8 @@ class Product
 	
 	public function __construct($id, $name, $category)
 	{
-		if ( is_null($id) || !is_numeric($id) ) {
-			throw new InvalidArgumentException('id argument must be numeric');
+		if ( is_null($id) || !is_int($id) ) {
+			throw new InvalidArgumentException('id argument must be an integer');
 		}
 		if ( is_null($name) || ('' == trim($name)) ) {
 			throw new InvalidArgumentException('name argument must be specified');
