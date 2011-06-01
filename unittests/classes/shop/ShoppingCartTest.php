@@ -164,8 +164,23 @@ class ShoppingCartTest extends PHPUnit_Framework_TestCase
 		$cart->addProductEntry(new StubProduct($id3), 1);
 		
 		$this->assertEquals(3, count($cart->getProductEntries()));
+	}
+	
+	public function testGetProductEntries_correctQuantitiesAfterAddingWithSameId()
+	{
+		$id1 = 1;
+		$id2 = 2;
+		$id3 = 3;
 		
-		// Also check the quantities for each entry
+		$cart = new ShoppingCart();
+		$cart->addProductEntry(new StubProduct($id1), 1);
+		$cart->addProductEntry(new StubProduct($id1), 1);
+		$cart->addProductEntry(new StubProduct($id2), 7);
+		$cart->addProductEntry(new StubProduct($id3), 4);
+		$cart->addProductEntry(new StubProduct($id3), 1);
+		$cart->addProductEntry(new StubProduct($id3), 2);
+		$cart->addProductEntry(new StubProduct($id3), 1);
+		
 		foreach($cart->getProductEntries() as $entry) {
 			switch($entry->getProduct()->getId()) {
 				case 1:
@@ -181,14 +196,28 @@ class ShoppingCartTest extends PHPUnit_Framework_TestCase
 		}
 	}
 	
-	public function testGetProductEntries_correctQuantitiesAfterAddingWithSameId()
-	{
-		$cart = new ShoppingCart();
-	}
-	
 	public function testGetProductEntries_correctAfterCallingAdjustProductQuantity()
 	{
+		$id = 3;
+		
 		$cart = new ShoppingCart();
+		$cart->addProductEntry(new StubProduct($id), 32);
+		$cart->adjustProductQuantity($id, 26);
+		
+		$singleEntry = $cart->getProductEntries();
+		$this->assertEquals(58, $singleEntry[0]->getQuantity());
+	}
+	
+	public function testGetProductEntries_entryRemovedAfterCallingAdjustProductQuantityToMakeQuantityZero()
+	{
+		$id = 3;
+		$quantity = 41;
+		
+		$cart = new ShoppingCart();
+		$cart->addProductEntry(new StubProduct($id), $quantity);
+		$cart->adjustProductQuantity($id, -$quantity);
+		
+		$this->assertEquals(0, count($cart->getProductEntries()));
 	}
 }
 
