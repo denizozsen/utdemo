@@ -17,22 +17,24 @@ class AllTests extends PHPUnit_Framework_TestSuite
 	/**
 	 * Constructs the test suite handler.
 	 */
-	public function __construct() {
-		$this->setName ('AllTests');
+	public function __construct()
+	{
+		$this->setName('AllTests');
 		
 		// Tests for util package
-		$this->addTestSuite ('VarProfileTest');
+		$this->addTestSuite('VarProfileTest');
 		
 		// Tests for shop package
-		$this->addTestSuite ('ProductTest');
-		$this->addTestSuite ('ProductEntryTest');
-		$this->addTestSuite ('ShoppingCartTest');
+		$this->addTestSuite('ProductTest');
+		$this->addTestSuite('ProductEntryTest');
+		$this->addTestSuite('ShoppingCartTest');
 	}
 	
 	/**
 	 * Creates the suite.
 	 */
-	public static function suite() {
+	public static function suite()
+	{
 		return new self ();
 	}
 }
