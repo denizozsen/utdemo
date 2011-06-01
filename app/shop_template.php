@@ -18,7 +18,7 @@
 		
 		<div id="list" style="margin: 40px 0 40px 0;">
 			
-			<h2>Products</h2>
+			<h2>Catalog</h2>
 			
 			<?php if (isset($_SESSION['add_to_cart_message'])) : ?>
 				<div style="font-size: smaller; margin-bottom: 10px;
