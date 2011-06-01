@@ -8,7 +8,7 @@
 
 <body>
 		
-	<form name="product_list" action="/index.php" method="post">
+	<form action="/index.php" method="post">
 		
 		<div>
 			<h1>Shop Demo Application</h1>
@@ -19,6 +19,15 @@
 			
 			<h2>Products</h2>
 			
+			<?php if (isset($_SESSION['add_to_cart_message'])) : ?>
+				<div style="font-size: smaller; margin-bottom: 10px; background-color: yellow;">
+					<?php
+					    echo $_SESSION['add_to_cart_message'];
+					    unset($_SESSION['add_to_cart_message']);
+					?>
+				</div>
+			<?php endif; ?>
+
 			<table>
 				<thead style="font-size: x-large;">
 					<tr>
@@ -33,8 +42,14 @@
 						<td style="padding-right: 50px;"><?php echo $p->getCategory() ?></td>
 						<td>
 							<span style="font-size: smaller;">amount:</span>
-							<input type="text" id="q<?php echo $p->getId() ?>" name="q<?php echo $p->getId() ?>" style="width: 15px"></input>
-							<input type="submit" id="add<?php echo $p->getId() ?>" name="add<?php echo $p->getId() ?>" value="Add to Cart"></input>
+							<input type="text"
+								id="q<?php echo $p->getId() ?>"
+								name="q<?php echo $p->getId() ?>"
+								style="width: 25px"></input>
+							<input type="submit"
+								id="add<?php echo $p->getId() ?>"
+								name="add<?php echo $p->getId() ?>"
+								value="Add to Cart"></input>
 						</td>
 					</tr>
 				<?php endforeach; ?>
@@ -50,14 +65,34 @@
 			
 			<h2>Shopping Cart</h2>
 			
+			<?php if (isset($_SESSION['cart_update_message'])) : ?>
+				<div style="font-size: smaller; margin-bottom: 10px; background-color: yellow;">
+					<?php
+					    echo $_SESSION['cart_update_message'];
+					    unset($_SESSION['cart_update_message']);
+					?>
+				</div>
+			<?php endif; ?>
+			
 			<?php if (count($cart->getProductEntries()) > 0) : ?>
     			<?php foreach($cart->getProductEntries() as $e) : ?>
     				<div style="margin-bottom: 20px">
     					<div><strong><?php echo $e->getProduct()->getName() ?></strong>
     							(category: <?php echo $e->getProduct()->getCategory() ?>)</div>
-    					<div>Quantity: <?php echo $e->getQuantity() ?></div>
+    					<div>
+    						Quantity:
+    						<input type="text"
+    							id="cq<?php echo $e->getProduct()->getId(); ?>"
+    							name="cq<?php echo $e->getProduct()->getId(); ?>"
+    							value="<?php echo $e->getQuantity() ?>"
+    							style="width: 25px">
+    						</input>
+    					</div>
     				</div>
     			<?php endforeach; ?>
+    			<div>
+    				<input type="submit" id="update_cart" name="update_cart" value="Update Cart"></input>
+    			</div>
     		<?php else : ?>
     			<div>The shopping cart is empty.</div>
     		<?php endif; ?>

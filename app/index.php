@@ -1,12 +1,5 @@
 <?php
 
-if(empty($_SERVER['CONTENT_TYPE'])){
-       
-     $type = "application/x-www-form-urlencoded";
-     $_SERVER['CONTENT_TYPE'] = $type;
-
-}
-
 set_include_path(get_include_path() . ':' . realpath('..'));
 
 require_once 'classes/shop/Product.php';
@@ -43,17 +36,36 @@ if (isset($_SESSION['cart'])) {
     $_SESSION['cart'] = $cart;
 }
 
-// Handle add-to-cart action
-foreach($_POST as $paramKey => $paramVal) {
-    if (strpos($paramKey, 'add') !== false) {
-        $productId = intval(substr($paramKey, strlen('add')));
-        $quantity = intval($_POST['q' . $productId]);
-        $cart->addProductEntry(retrieveProduct($productId), $quantity);
-        break;
+// Handle actions
+if ('POST' == strtoupper($_SERVER['REQUEST_METHOD'])) {
+    // Handle add-to-cart action
+    foreach($_POST as $paramKey => $paramVal) {
+        if (strpos($paramKey, 'add') !== false) {
+            $productId = intval(substr($paramKey, strlen('add')));
+            $quantity = intval($_POST['q' . $productId]);
+            $cart->addProductEntry(retrieveProduct($productId), $quantity);
+            $_SESSION['add_to_cart_message'] = 'Product added to cart';
+            break;
+        }
     }
+    
+    // Handle update-cart action
+    if (isset($_POST['update_cart'])) {
+        foreach($cart->getProductEntries() as $e) {
+            $currentQ = $e->getQuantity();
+            $newQ = $_POST['cq' . $e->getProduct()->getId()];
+            if ($currentQ != $newQ) {
+                $cart->adjustProductQuantity($e->getProduct()->getId(), ($newQ-$currentQ));
+            }
+        }
+        
+        $_SESSION['cart_update_message'] = 'Cart updated successfully!';
+    }
+    
+    // Redirect
+    header('Location: index.php');
+    exit();
 }
-
-// TODO - Handle adjust-quantity action
 
 include 'shop_template.php';
 
