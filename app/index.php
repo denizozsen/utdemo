@@ -11,10 +11,13 @@ session_start();
 
 // Create product list
 $productCatalog = array();
-$productCatalog[] = new Product(1, 'Honda Fit', 'Cars');
-$productCatalog[] = new Product(2, 'Toyota Vitz', 'Cars');
-$productCatalog[] = new Product(3, 'Porsche Carrera', 'Sanjou\'s Cars');
-$productCatalog[] = new Product(4, 'Porsche Cayman', 'Sanjou\'s Cars');
+$i = 1;
+$productCatalog[] = new Product($i++, 'Honda Fit', 'Cars');
+$productCatalog[] = new Product($i++, 'VW Golf', 'Cars');
+$productCatalog[] = new Product($i++, 'Porsche Carrera', 'Sanjou\'s Favourites');
+$productCatalog[] = new Product($i++, 'Jeans', 'Clothing');
+$productCatalog[] = new Product($i++, 'Shirt', 'Clothing');
+$productCatalog[] = new Product($i++, 'Hat', 'Clothing');
 
 function retrieveProduct($id)
 {
