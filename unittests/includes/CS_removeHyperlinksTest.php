@@ -7,7 +7,7 @@ require_once 'includes/utilities.php';
 /**
  * removeHyperlinks() test case.
  */
-class MORE_removeHyperlinksTest extends PHPUnit_Framework_TestCase
+class CS_removeHyperlinksTest extends PHPUnit_Framework_TestCase
 {
     public function testRemoveHyperlinks()
     {

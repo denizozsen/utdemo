@@ -9,7 +9,7 @@ require_once 'PHPUnit/Framework/TestCase.php';
 /**
  * ShoppingCart test case.
  */
-class ShoppingCartTest extends PHPUnit_Framework_TestCase
+class CS_ShoppingCartTest extends PHPUnit_Framework_TestCase
 {
 	public function testAddProductEntry_noException()
 	{
