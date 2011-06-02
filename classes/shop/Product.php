@@ -11,16 +11,27 @@ class Product
 	private $name;
 	private $category;
 	
+	/**
+	 * Creates a new Product object.
+	 * 
+	 * @param integer $id
+	 * @param string $name
+	 * @param string $category
+	 * 
+	 * @throws InvalidArgumentException if the id argument is not an integer,
+	 *                                  or the name argument is null or empty,
+	 *                                  or the category argument is null or empty
+	 */
 	public function __construct($id, $name, $category)
 	{
 		if ( is_null($id) || !is_int($id) ) {
 			throw new InvalidArgumentException('id argument must be an integer');
 		}
-		if ( is_null($name) || ('' == trim($name)) ) {
-			throw new InvalidArgumentException('name argument must be specified');
+		if ( is_null($name) || !is_string($name) || ('' == trim($name)) ) {
+			throw new InvalidArgumentException('name argument must be a non-empty string');
 		}
-		if ( is_null($category) || ('' == trim($category)) ) {
-			throw new InvalidArgumentException('category argument must be specified');
+		if ( is_null($category) || !is_string($category) || ('' == trim($category)) ) {
+			throw new InvalidArgumentException('category argument must be a non-empty string');
 		}
 		
 		$this->id       = $id;
