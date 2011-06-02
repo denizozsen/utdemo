@@ -7,7 +7,7 @@ require_once 'PHPUnit/Framework/TestCase.php';
 /**
  * Product test case.
  */
-class CS_ProductTest extends PHPUnit_Framework_TestCase
+class ProductTest extends PHPUnit_Framework_TestCase
 {
 	public function testConstructor_noException()
 	{
