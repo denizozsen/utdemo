@@ -36,19 +36,40 @@
 				</div>
 			<?php endif; ?>
 
-			<table>
+
+			<script type="text/javascript">
+				function deactivateAllRows()
+				{
+					var allAddToBaskets =
+						document.getElementsByClassName('addtobasket');
+					for(var i = 0; i < allAddToBaskets.length; ++i) {
+						allAddToBaskets[i].style.visibility = 'hidden';
+						allAddToBaskets[i].parentNode.style.backgroundColor = '#FFFFFF';
+					}
+				}
+
+				function activateRow(id)
+				{
+					deactivateAllRows();
+					var addToBasket = document.getElementById('addtobasket' + id);
+					addToBasket.style.visibility = 'visible';
+					addToBasket.parentNode.style.backgroundColor = '#AAFFFF';
+				}
+			</script>
+
+			<table onmouseout="deactivateAllRows();">
 				<thead style="font-size: x-large;">
 					<tr>
 						<td>Name</td>
 						<td>Category</td>
-						<td></td>
+						<td>&nbsp;</td>
 					</tr>
 				</thead>
 				<?php foreach($productCatalog as $p) : ?>
-					<tr>
+					<tr onmouseover="activateRow(<?php echo $p->getId() ?>);">
 						<td style="padding-right: 50px;"><strong><?php echo $p->getName() ?></strong></td>
 						<td style="padding-right: 50px;"><?php echo $p->getCategory() ?></td>
-						<td>
+						<td class="addtobasket" id="addtobasket<?php echo $p->getId() ?>" style="visibility: hidden;">
 							<span style="font-size: smaller;">quantity:</span>
 							<input type="text"
 								id="q<?php echo $p->getId() ?>"
